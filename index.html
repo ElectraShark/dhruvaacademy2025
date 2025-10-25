@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dhruva Academy provides high school students with strong foundations in Science and Math.">
+  <title>Dhruva Academy</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+    body {
+      line-height: 1.6;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo a img {
+      height: 55px; /* Slightly larger logo */
+      width: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    /* Logo hover effect */
+    .logo a img:hover {
+      transform: scale(1.05);
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #222;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .nav-links li a:hover {
+      color: #ff6600; /* Orange text */
+      background: rgba(255, 102, 0, 0.1); /* Light orange background */
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+    .carousel-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    .carousel-buttons button {
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      transition: background 0.3s;
+    }
+    .carousel-buttons button:hover {
+      background: #ff6600;
+      color: white;
+    }
+
+    /* About Us Section */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      gap: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .about-image,
+    .about-text {
+      flex: 1 1 500px;
+    }
+    .about-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ff6600;
+    }
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Courses Section */
+    .courses-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .courses-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ff6600;
+    }
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .course-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .course-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff6600;
+    }
+    .course-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Why Us Section */
+    .why-us-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .why-us-section h2 {
+      font-size: 2rem;
+      color: #ff6600;
+      margin-bottom: 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .card {
+      background: #ffffff;
+      padding: 2rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      color: #ff6600;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .gallery-section h2 {
+      font-size: 2rem;
+      color: #ff6600;
+      margin-bottom: 2rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    .gallery-overlay p {
+      color: white;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .testimonials-section h2 {
+      font-size: 2rem;
+      color: #ff6600;
+      margin-bottom: 2rem;
+    }
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 4rem;
+      color: rgba(0,119,255,0.2);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-size: 1rem;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      text-align: left;
+      padding-left: 1rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0077ff, #00c6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .author-info {
+      text-align: left;
+    }
+    .author-name {
+      font-weight: bold;
+      color: #333;
+      font-size: 1rem;
+    }
+    .author-role {
+      font-size: 0.85rem;
+      color: #777;
+    }
+    .testimonial-rating {
+      color: #ffa500;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.3s;
+    }
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+
+    /* Video Testimonials */
+    .video-testimonials {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .video-testimonials h2 {
+      font-size: 2rem;
+      color: #ff6600;
+      margin-bottom: 2rem;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .video-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .video-caption {
+      padding: 1rem;
+      color: #333;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+
+    /* Contact Us */
+    .contact-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .branch-card, .contact-form-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex: 1 1 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .branch-card h3, .contact-form-card h3 {
+    margin-bottom: 0.5rem;
+    color: #ff6600;
+  }
+
+  .branch-card p {
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .branch-card a {
+    color: #ff6600;
+    text-decoration: none;
+  }
+
+  .branch-card a:hover {
+    text-decoration: underline;
+  }
+
+  .map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-height: 250px;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .contact-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-form-card input, 
+  .contact-form-card textarea {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: none;
+  }
+
+  .contact-form-card button {
+    padding: 0.7rem;
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .contact-form-card button:hover {
+    background: #ff6600;
+  }
+
+  /* Simple Footer */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: #222;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .about-section {
+        padding: 3rem 1.5rem;
+      }
+      .about-text h2, .courses-section h2, .why-us-section h2, .gallery-section h2 {
+        font-size: 1.8rem;
+      }
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .testimonials-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        padding: 2rem 1rem;
+      }
+      .about-text, .about-image {
+        flex: 1 1 100%;
+      }
+      .course-card {
+        padding: 1.5rem 1rem;
+      }
+      .about-text h2, .courses-section h2, .why-us-section h2, .gallery-section h2 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+      .about-text p {
+        text-align: center;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .card h3 {
+        font-size: 1.2rem;
+      }
+      .card p {
+        font-size: 0.95rem;
+      }
+      .testimonials-section h2 {
+        font-size: 1.6rem;
+      }
+    }
+    @media(max-width: 768px) {
+    .contact-section {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .about-text h2, .courses-section h2, .why-us-section h2, .gallery-section h2 {
+        font-size: 1.5rem;
+      }
+      .about-text p, .course-card p, .card p {
+        font-size: 0.95rem;
+      }
+      .course-card h3 {
+        font-size: 1.2rem;
+      }
+      .testimonials-section h2 {
+        font-size: 1.5rem;
+      }
+      .testimonial-text {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="#home">
+          <img src="images/logo.png" alt="Dhruva Academy Logo">
+        </a>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Carousel Section -->
+  <div class="carousel" id="home">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="images/Teacher along with students group photo.png" alt="Teacher along with students group photo">
+      </div>
+      <div class="carousel-slide">
+        <img src="images/10th grade results banner 2023.png" alt="10th grade results banner 2023">
+      </div>
+      <div class="carousel-slide">
+        <img src="images/10th grade results banner 2024.png" alt="10th grade results banner 2024">
+      </div>
+      <div class="carousel-slide">
+        <img src="images/Admissions open banner.png" alt="Admissions open banner">
+      </div>
+    </div>
+    <div class="carousel-buttons">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </div>
+
+  <!-- About Us Section -->
+  <section class="about-section" id="about">
+    <div class="about-image">
+      <img src="images/Founder and chief tutor picture.jpg" alt="About Dhruva Academy">
+    </div>
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+        Dhruva Academy is committed to providing high school students with a strong foundation in Science and Math. Our expert teachers, engaging curriculum, and focus on individual attention ensure that every student achieves academic excellence and develops a love for learning.
+      </p>
+      <p>
+        Established with a vision to nurture young minds, we combine modern teaching techniques with personal mentorship to help students reach their full potential. Join us on a journey of growth, knowledge, and success.
+      </p>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses-section" id="courses">
+    <h2>Our Courses</h2>
+    <div class="courses-container">
+      <div class="course-card">
+        <h3>8th Grade</h3>
+        <p>ICSE & CBSE Curriculum</p>
+      </div>
+      <div class="course-card">
+        <h3>9th Grade</h3>
+        <p>ICSE & CBSE Curriculum</p>
+      </div>
+      <div class="course-card">
+        <h3>10th Grade</h3>
+        <p>ICSE & CBSE Curriculum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="why-us-section" id="why-us">
+    <h2>Why Choose Dhruva Academy?</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>💻 PPT-Based Teaching</h3>
+        <p>Interactive and visual lessons using PowerPoint enhance understanding and save time compared to traditional board teaching.</p>
+      </div>
+      <div class="card">
+        <h3>👥 Low Student Strength</h3>
+        <p>Small batches ensure personalized attention, active participation, and focused guidance for every student.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Online Tests</h3>
+        <p>Short online tests via the Dhruva Academy App with varied formats help students self-evaluate and strengthen learning.</p>
+      </div>
+      <div class="card">
+        <h3>📚 Custom Notes</h3>
+        <p>Faculty-prepared notes aligned with curriculum help in exam preparation and concept clarity.</p>
+      </div>
+      <div class="card">
+        <h3>🧪 Weekly Class Tests</h3>
+        <p>Regular assessments simulate exam conditions and provide continuous feedback to track progress.</p>
+      </div>
+      <div class="card">
+        <h3>🎥 Video Lectures</h3>
+        <p>Recorded sessions via the academy app allow students to review lessons anytime for better retention.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-img="images/Teacher addressing students.jpg">
+        <img src="images/Teacher addressing students.jpg" alt="Teacher and Students">
+        <div class="gallery-overlay">
+          <p>Teacher with Students</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-img="images/Teacher teaching in class.jpg">
+        <img src="images/Teacher teaching in class.jpg" alt="2023 Results">
+        <div class="gallery-overlay">
+          <p>10th Grade Results 2023</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-img="images/pooja at the center.jpg">
+        <img src="images/pooja at the center.jpg" alt="2024 Results">
+        <div class="gallery-overlay">
+          <p>10th Grade Results 2024</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-img="images/dhruva academy group photo.jpg">
+        <img src="images/dhruva academy group photo.jpg" alt="Founder">
+        <div class="gallery-overlay">
+          <p>Founder & Chief Tutor</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-img="images/classroom.jpg">
+        <img src="images/classroom.jpg" alt="Admissions">
+        <div class="gallery-overlay">
+          <p>Admissions Open</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="testimonials">
+    <h2>What Our Students Say</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">
+          Dhruva Academy helped me understand complex concepts in Physics and Mathematics. The PPT-based teaching made learning so much easier and more engaging. I scored 95% in my board exams!
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <div class="author-name">Rohan Sharma</div>
+            <div class="author-role">10th Grade Student, CBSE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">
+          The small batch size meant I got personal attention from teachers. The weekly tests and video lectures helped me stay consistent with my studies. Thank you Dhruva Academy!
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div class="author-info">
+            <div class="author-name">Priya Patel</div>
+            <div class="author-role">9th Grade Student, ICSE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">
+          Best coaching center in the area! The custom notes are excellent for revision and the online tests on the app helped me practice regularly. Highly recommend for Science and Math!
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <div class="author-name">Aarav Kumar</div>
+            <div class="author-role">10th Grade Student, CBSE</div>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </section>
+
+  <!-- Video Testimonials -->
+  <section class="video-testimonials" id="video-testimonials">
+    <h2>Video Testimonials</h2>
+    <div class="video-grid">
+      <!-- Example 1: YouTube -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                  title="Student Testimonial"
+                  frameborder="0"
+                  allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">Rohan shares his experience at Dhruva Academy</div>
+      </div>
+
+      <!-- Example 2: Local Video -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <video controls poster="thumbnail1.jpg">
+            <source src="testimonial1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">Priya talks about how weekly tests improved her scores</div>
+      </div>
+
+      <!-- Example 3: YouTube -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                  title="Parent Testimonial"
+                  frameborder="0"
+                  allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">Parent feedback on her daughter’s progress at Dhruva Academy</div>
+      </div>
+    </div>
+  </section>
+
+
+  <h1 style="text-align: center; color: #ff6600; margin-bottom: 2rem;" id="contact">Contact Us</h1>
+  <section class="contact-section">
+  <!-- Branch 1 -->
+  <div class="branch-card">
+    <h3>Center 1 - Girinagar</h3>
+    <p><strong>Address:</strong> 
+      <a href="https://maps.app.goo.gl/7XNTYUP6r86rLQby6" target="_blank">
+        2nd floor, Ayyappa Arcade, 80 Feet Road, 1st Phase Girinagar, 3rd Block, Banashankari 3rd Stage, Bengaluru, Karnataka, 560050
+      </a>
+    </p>
+    <p><strong>Phone:</strong> 
+      <a href="tel:+918792090837">+91 87920 90837</a>
+    </p>
+    <p><strong>Email:</strong> 
+      <a href="mailto:dhruvaacademy.girinagar@gmail.com">dhruvaacademy.basaveshwar@gmail.com</a>
+    </p>
+    <p><strong>Timings:</strong> Mon–Sat: 11:00 AM – 9:00 PM | Sun: Closed</p>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps?q=BDHRUVA ACADEMY,+girinagar&output=embed" 
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Branch 2 -->
+  <div class="branch-card">
+    <h3>Center 2 - Jayanagar</h3>
+    <p><strong>Address:</strong> 
+      <a href="https://maps.app.goo.gl/A6Y7J1697nLpZ9v88" target="_blank">
+        #156, 3rd Cross Rd, 1st Block, Jayanagar 1st Block, Jayanagar, Bengaluru, Karnataka 560011
+      </a>
+    </p>
+    <p><strong>Phone:</strong> 
+      <a href="tel:+918861599903">+91 88615 99903</a>
+    </p>
+    <p><strong>Email:</strong> 
+      <a href="mailto:dhruvaacademy.jayanagar@gmail.com">dhruvaacademy.vijayanagar@gmail.com</a>
+    </p>
+    <p><strong>Timings:</strong> Mon–Sat: 11:00 AM – 9:00 PM | Sun: Closed</p>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps?q=DHRUVA ACADEMY,+jayanagar&output=embed" 
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="contact-form-card">
+    <h3>Contact Us</h3>
+    <form id="whatsappForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Submit via WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- Simple Footer -->
+<footer class="footer">
+  <p>© 2025 Dhruva Academy. All rights reserved.</p>
+</footer>
+
+ 
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Lightbox Image">
+    </div>
+  </div>
+
+
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('show');
+      }
+    });
+
+    // Carousel Script
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev');
+    let currentSlide = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    nextButton.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateCarousel();
+    });
+    prevButton.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateCarousel();
+    }, 5000);
+
+    // Gallery Lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.getAttribute('data-img');
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+    const form = document.getElementById('whatsappForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    const text = `Hello, my name is ${name}.\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`;
+    const whatsappURL = `https://wa.me/918792090837?text=${encodeURIComponent(text)}`;
+    window.open(whatsappURL, '_blank');
+  });
+  </script>
+</body>
+</html>
